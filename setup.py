@@ -4,7 +4,7 @@ from setuptools import setup
 setup(name='basars_addons',
       version='0.0.1',
       description='TensorFlow addons that help to build ML models for Basars',
-      url='https://github.com/Basars/basars_addons.git',
+      url='https://github.com/Basars/basars-addons.git',
       author='OrigamiDream',
       packages=find_packages(),
       zip_safe=False,
