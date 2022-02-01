@@ -2,7 +2,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 setup(name='basars_addons',
-      version='0.0.1',
+      version='0.0.2',
       description='TensorFlow addons that help to build ML models for Basars',
       url='https://github.com/Basars/basars-addons.git',
       author='OrigamiDream',
