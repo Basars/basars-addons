@@ -1,1 +1,2 @@
 from basars_addons.schedules.cosine_decay import InitialCosineDecayRestarts
+from basars_addons.schedules.cosine_decay import CosineDecayWarmupRestarts
