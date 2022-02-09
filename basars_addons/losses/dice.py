@@ -31,7 +31,7 @@ class Dice(Loss):
         if self.from_logits:
             y_pred = tf.nn.softmax(y_pred)
 
-        batch_size = y_true.shape[0]
+        batch_size = tf.shape(y_pred)[0]
         losses = []
         for i in range(batch_size):
             loss = 0.0
