@@ -17,7 +17,7 @@ class Dice(Loss):
         self.epsilon = epsilon
         self.from_logits = from_logits
 
-    def _dice_each_classes(self, y_true, y_pred):
+    def dice_coefficient(self, y_true, y_pred):
         intersection = tf.reduce_sum(y_true * y_pred)
         y_sum = tf.reduce_sum(y_true * y_true)
         z_sum = tf.reduce_sum(y_pred * y_pred)
@@ -27,8 +27,4 @@ class Dice(Loss):
         if self.from_logits:
             y_pred = tf.nn.softmax(y_pred)
 
-        loss = 0.0
-        for i in range(self.num_classes):
-            loss += self._dice_each_classes(y_true[:, :, :, i], y_pred[:, :, :, i])
-        loss = loss / self.num_classes
-        return tf.expand_dims(loss, 0)
+        return self.dice_coefficient(y_true, y_pred)

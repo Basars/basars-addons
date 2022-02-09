@@ -2,7 +2,6 @@ import pytest
 import numpy as np
 
 from basars_addons.losses import Dice
-from tensorflow.keras.losses import Reduction
 
 
 def sample_true_pred():
@@ -24,13 +23,6 @@ def test_dice():
     assert dice(y_true, y_pred).numpy() >= 0.999
     assert dice(y_true, y_true).numpy() == 0.
 
-
-def test_dice_reduction_none():
-    dice = Dice(name='dice', reduction=Reduction.NONE)
-
-    y_true, y_pred = sample_true_pred()
-
-    assert len(dice(y_true, y_pred)) == 1
 
 
 if __name__ == '__main__':
