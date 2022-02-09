@@ -30,7 +30,7 @@ def test_dice_reduction_none():
 
     y_true, y_pred = sample_true_pred()
 
-    assert len(dice(y_true, y_pred)) == 2
+    assert len(dice(y_true, y_pred)) == 1
 
 
 if __name__ == '__main__':
