@@ -39,4 +39,4 @@ class Dice(Loss):
                 loss += self._dice_each_classes(y_true[i, :, :, c], y_pred[i, :, :, c])
             loss = loss / self.num_classes
             losses.append(loss)
-        return tf.convert_to_tensor(np.array(losses))
+        return tf.convert_to_tensor(losses)
