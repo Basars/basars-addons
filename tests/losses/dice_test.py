@@ -18,8 +18,6 @@ def test_dice():
 
     y_true, y_pred = sample_true_pred()
 
-    print(y_true, y_pred)
-
     assert dice(y_true, y_pred).numpy() >= 0.999
     assert dice(y_true, y_true).numpy() == 0.
 
