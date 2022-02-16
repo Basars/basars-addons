@@ -43,6 +43,8 @@ class CosineDecayWarmupRestarts(CosineDecayRestarts):
         self.first_cycle_steps = first_cycle_steps
 
     def __call__(self, step):
+        step = tf.cast(step, tf.float32)
+
         stage1 = tf.cast(step > self.first_cycle_steps, tf.float32)
         stage2 = tf.cast(step <= self.first_cycle_steps, tf.float32)
         annealing = super(CosineDecayWarmupRestarts, self).__call__(step - self.first_cycle_steps) * stage1
