@@ -12,12 +12,14 @@ class CosineDecayWarmupRestarts(CosineDecayRestarts):
                  t_mul=2.0,
                  m_mul=1.0,
                  alpha=0.0,
+                 epsilon=1e-6,
                  name=None):
         super(CosineDecayWarmupRestarts, self).__init__(initial_learning_rate,
                                                         first_decay_steps,
                                                         t_mul, m_mul,
                                                         alpha, name)
         self.first_cycle_steps = first_cycle_steps
+        self.epsilon = epsilon
 
     def __call__(self, step):
         step = tf.cast(step, tf.float32)
@@ -26,4 +28,5 @@ class CosineDecayWarmupRestarts(CosineDecayRestarts):
         stage2 = tf.cast(step <= self.first_cycle_steps, tf.float32)
         annealing = super(CosineDecayWarmupRestarts, self).__call__(step - self.first_cycle_steps) * stage1
         warmup = self.initial_learning_rate * step * (self.first_cycle_steps ** -1) * stage2
+        warmup += self.epsilon
         return tf.add(annealing, warmup)
